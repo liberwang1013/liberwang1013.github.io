@@ -24,4 +24,4 @@ github_username:  liberwang1013
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: Basic
