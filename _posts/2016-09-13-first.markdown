@@ -1,7 +1,0 @@
----
-layout: post
-title:  "Welcome to Here!"
-date:   2016-09-13 10:20:35 +0800
-categories: jekyll update
----
-Hello world!
