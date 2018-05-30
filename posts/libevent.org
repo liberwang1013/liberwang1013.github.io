@@ -1,0 +1,7 @@
+#+TITLE: libevent 1.1 Notes
+
+* timeout event
+
+* signal event
+
+* read/write event
