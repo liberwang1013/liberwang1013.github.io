@@ -1,0 +1,59 @@
+#+TITLE: epoll编程实践
+
+* Refactor模式
+** TODO fill this content
+
+* Epoll接口
+#+BEGIN_SRC c
+int epoll_create(int);
+int epoll_ctl();
+int epoll_wait();
+#+END_SRC 
+
+* 简单Epoll实例
+
+#+BEGIN_SRC c
+
+struct epoll_event listen_ev, ev, *events;
+
+//to get listening socket
+listener = get_listening_socket();
+
+setnonblocking(listener);
+
+kdpfd = event_create(SOMAXCONN);
+
+listen_ev.data.fd = listener;
+listen_ev.events = EPOLLIN;
+
+ret = epoll_ctl(kdpfd, EPOLL_CTL_ADD, listener, &listen_ev);
+
+for(;;) {
+// thread will be blocked here
+    nfds = epoll_wait(kdpfd, events, maxevents, -1);
+    for(n = 0; n < nfds; ++n) {
+        if(events[n].data.fd == listener) {
+            client = accept(listener, (struct sockaddr *) &local,
+                            &addrlen);
+            if(client < 0){
+                perror("accept");
+                continue;
+            }
+            // set client fd to non-blocking
+            setnonblocking(client);
+            ev.events = EPOLLIN | EPOLLET;
+            ev.data.fd = client;
+            if (epoll_ctl(kdpfd, EPOLL_CTL_ADD, client, &ev) < 0) {
+                fprintf(stderr, "epoll set insertion error: fd=%d0,
+                        client);
+                return -1;
+            }
+        }
+        else
+            do_use_fd(events[n].data.fd);
+    }
+}
+#+END_SRC
+
+
+

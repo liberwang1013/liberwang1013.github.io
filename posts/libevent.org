@@ -1,7 +1,25 @@
 #+TITLE: libevent 1.1 Notes
 
-* timeout event
+* 1. 简介
+在项目中深度使用libevent,里面重要的特性都用到了,包括read事件,signal事件,timeout事件,还有一个比较重要的是在多线程场景中使用libevent,所以要看一下libevent的原理和实现.
+学习libevent这个库主要想从以下几个方面入手:
+   - event_base这个数据结构如何初试化
+   - write/read事件的原理
+   - signal事件如何处理
+   - timeout事件如何处理
+   - 多线程场景下的事件如何在线程间隔离
 
-* signal event
+* 2. event_base的结构以及针对eppll的初始化流程
 
-* read/write event
+#+BEGIN_SRC c
+
+#+END_SRC
+
+* 3. 基于epll的read/write事件的原理
+- 1. 利用结构创建一个EV_READ/EV_WRITE的事件
+- 2. 
+* TODO 4. 基于epoll的signal事件的处理
+  
+* TODO 5. 基于epoll的timeout时间的处理
+
+
