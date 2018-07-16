@@ -1,15 +1,3 @@
-#+TITLE: epoll编程实践
-
-* Refactor模式
-** TODO fill this content
-
-* Epoll接口
-#+BEGIN_SRC c
-int epoll_create(int);
-int epoll_ctl();
-int epoll_wait();
-#+END_SRC 
-
 * 简单Epoll实例
 
 #+BEGIN_SRC c

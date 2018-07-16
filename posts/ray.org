@@ -1,1 +1,11 @@
 #+TITLE: ray Notes
+
+
+* 各个模块
+global_scheduler
+
+local_scheduler
+
+object_manager
+
+

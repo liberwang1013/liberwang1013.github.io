@@ -1,0 +1,38 @@
+#+TITLE: Redis 笔记
+#+AUTHOR: Liber Wang
+
+* Redis object结构
+object结构是redis中最重要的结构,它架起了redis type和redis encoding的桥梁
+
+#+BEGIN_SRC c
+typedef struct redisObject {
+    unsigned type:4;
+    unsigned encoding:4;
+    unsigned lru:LRU_BITS; /* LRU time (relative to global lru_clock) or
+                            * LFU data (least significant 8 bits frequency
+                            * and most significant 16 bits access time). */
+    int refcount;
+    void *ptr;
+} robj;
+#+END_SRC
+
+通过这个结构Redis实现了类似基类->派生类的功能
+
+redisObject ----> Redis String Object
+             |
+             |--> Redis List Object
+             |
+             |--> Redis Set Object
+             |
+             |--> Redis Zset Object
+             |
+             |--> Redis Hash Object
+             |
+             |--> 
+             |
+             |-->
+
+
+* Redis encoding
+** 
+

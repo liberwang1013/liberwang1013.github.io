@@ -19,7 +19,37 @@
 - 1. 利用结构创建一个EV_READ/EV_WRITE的事件
 - 2. 
 * TODO 4. 基于epoll的signal事件的处理
+
+*** 初始化
+1. 在不考虑多线程的情况下代码可以简单的写成下面的样子,其实早起版本1.1代码就是这么写的
+
+#+BEGIN_SRC c
+void evsig_init() {
+  
+}
+
+
+#+END_SRC
+
+*** 事件发生时
+- 1. 将相应的信号量的事件发生次数次数+1
+- 2. evsignal_caught设置为1
+- 3. 向pipe中写数据
+
+void evsignal_handler() {
+
+}
+
+*** 事件处理
+- 1. 唤醒监听的异步事件
+- 2. 判断evsignal_caught的值调用evsignal_process函数
+
+**** 遍历所有的singal事件队列,将所有触发了信号量的的事件全部加入active队列
+**** dispatch 后处理所有的active的事件
   
 * TODO 5. 基于epoll的timeout时间的处理
 
 
+在linux kernel升级到x.y.z版本后系统支持了timefd的
+
+*
