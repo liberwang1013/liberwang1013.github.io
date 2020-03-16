@@ -1,14 +1,15 @@
 #+TITLE: Emacs Configuration
+#+OPTIONS: toc:t
 
-* Table Of Content
-#+OPTIONS: toc:2
+** Table Of Content
 
-* 字体
-** 中文字体
-#+BEGIN_SRC lisp
-  ;; Chinese Font Configuration
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                        charset (font-spec :family "WenQuanYi Micro Hei Mono"
-                                           :size 16)))
-#+END_SRC
+** 字体
+*** 默认字体
+*** 中文字体
+ #+BEGIN_SRC lisp
+   ;; Chinese Font Configuration
+   (dolist (charset '(kana han symbol cjk-misc bopomofo))
+     (set-fontset-font (frame-parameter nil 'font)
+                         charset (font-spec :family "WenQuanYi Micro Hei Mono"
+                                            :size 16)))
+ #+END_SRC
