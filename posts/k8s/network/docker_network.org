@@ -1,0 +1,98 @@
+#+Title: Docker Network
+* 网络的模式
+网络分为主要有2种模式
+- bridge
+- host
+
+#+begin_src shell
+root@liber:/home/liber# docker network list
+NETWORK ID          NAME                DRIVER              SCOPE
+bf195bd2db0c        bridge              bridge              local
+21b966e54341        host                host                local
+3256fcd20990        none                null                local
+root@liber:/home/liber# docker network inspect bf195bd2db0c
+[
+    {
+        "Name": "bridge",
+        "Id": "bf195bd2db0c035440c31476908d8a93465e75decf2bb2eedae6ce93ed057c81",
+        "Created": "2020-04-05T11:27:31.605314371Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+]
+#+end_src
+
+** Bridge模式详解
+*** 要点
+**** 默认会创建一个名为bridge0的虚拟网桥
+***** TODO 虚拟网桥详解
+**** 网段docker0的默认网段一般是172.17.0.0/16, docker0自己的ip一般是172.17.0.1
+
+#+begin_src shell
+root@liber:/home/liber# docker network inspect bf195bd2db0c
+[
+    {
+        "Name": "bridge",
+        "Id": "bf195bd2db0c035440c31476908d8a93465e75decf2bb2eedae6ce93ed057c81",
+        "Created": "2020-04-05T11:27:31.605314371Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+]
+#+end_src

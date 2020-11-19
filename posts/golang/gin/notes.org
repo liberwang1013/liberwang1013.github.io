@@ -1,0 +1,12 @@
+#+title: gin框架一些注意点
+
+*** 如何多次绑定请求body体
+之前发现一个问题, gin框架的Context首次调用BindJSON后再次调用会出现EOF错误,
+原因是xxx
+如何规避这个问题: 避免使用BindJSON这个函数, 改用ShouldBindBodyWith这个函数
+#+begin_src golang
+func demo(c *gin.Context) {
+  s := &SomeStruct{}
+  err := c.ShouldBindBodyWith(s, binding.JSON)
+}
+#+end_src

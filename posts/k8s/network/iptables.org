@@ -1,0 +1,15 @@
+#+title: iptables
+** 关键
+   5种hook
+   5种table
+
+   
+   #+table: table-chains
+   
+| table/chains | PREROUTING | INPUT | FORWARD | OUTPUT | POSTROUTING |
+|--------------+------------+-------+---------+--------+-------------|
+| filter       |            |       |         |        |             |
+| nat          |            |       |         |        |             |
+| mangle       |            |       |         |        |             |
+|              |            |       |         |        |             |
+   

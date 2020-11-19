@@ -1,0 +1,13 @@
+#+TITLE: Bastion
+bastion是一个Rust程序代码运行时框架, 他能够检测到程序过程中的panics, 并组织程序崩溃
+* 架构
+
+
+* 关键的几个数据结构
+** Bastion
+`Bastion`实现了RuntimeManager这个trait, 是整个服务的入口
+* Supervisor
+* Context
+* Bastion
+** BastionConfig
+** Builder

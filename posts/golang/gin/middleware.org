@@ -1,0 +1,13 @@
+#+Title: gin框架middleware
+** 创建一个middleware
+#+begin_src golang
+func Wrapper() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		fmt.Println("I'm a middleware")
+		c.Next()
+	}
+}
+#+end_src
+
+** 注意点
+c.Next()只能在middleware中使用, 作用是执行下一个handler
